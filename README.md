@@ -31,3 +31,12 @@ az deployment group what-if --resource-group myurlshortener-dev --template-file 
 ```bash
 az deployment group create --resource-group myurlshortener-dev --template-file infrastructure/main.bicep
 ```
+
+### Create user for GH Action
+in xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx you should copy your subscription id from azure portal
+```bash
+az ad sp create-for-rbac --name "GitHub-Action-SP" \
+    --role contributor \
+    --scopes /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+    --sdk-auth
+```
