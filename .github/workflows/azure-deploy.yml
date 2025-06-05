@@ -36,9 +36,9 @@ jobs:
         uses: azure/CLI@v2
         with:
           azcliversion: 2.55.0
+          scriptType: bash
           inlineScript: |
-            #!/bin/bash
-            az group create --name ${{vars.RESOURCE_GROUP_NAME}} --location ${{vars.RESOURCE_GROUP_LOCATION}}
+            az group create --name "${{ vars.RESOURCE_GROUP_NAME }}" --location "${{ vars.RESOURCE_GROUP_LOCATION }}"
             echo "Azure resource group created"
           
       - name: Deploy Bicep
