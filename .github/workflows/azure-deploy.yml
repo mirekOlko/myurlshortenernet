@@ -38,13 +38,6 @@ jobs:
           azcliversion: latest
           inlineScript: |
             az account show
-          
-      - name: Run Azure CLI commands
-        uses: azure/CLI@v2
-        with:
-          azcliversion: 2.55.0
-          scriptType: bash
-          inlineScript: |
             az group create --name ${{ vars.RESOURCE_GROUP_NAME }}" --location ${{ vars.RESOURCE_GROUP_LOCATION }}
             echo "Azure resource group created"
           
