@@ -1,6 +1,6 @@
 using URLShortner.Core;
 
-namespace URLShortner.Api.Core.Tests;
+namespace URLShortner.Api.Tests;
 
 public class TokerRangeScenarios
 {

@@ -1,6 +1,6 @@
 namespace URLShortner.Core;
 
-public class TokerProvider
+public class TokenProvider
 {
     private TokenRange? _tokenRange; 
 

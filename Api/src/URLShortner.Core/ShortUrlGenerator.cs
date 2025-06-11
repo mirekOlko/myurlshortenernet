@@ -4,9 +4,9 @@ namespace URLShortner.Api.Core.Tests;
 
 public class ShortUrlGenerator
 {
-    private readonly TokerProvider _tokenProvider;
+    private readonly TokenProvider _tokenProvider;
 
-    public ShortUrlGenerator(TokerProvider tokerProvider)
+    public ShortUrlGenerator(TokenProvider tokerProvider)
     {
         _tokenProvider = tokerProvider;
     }

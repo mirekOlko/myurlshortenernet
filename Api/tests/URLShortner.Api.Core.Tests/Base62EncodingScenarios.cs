@@ -1,6 +1,6 @@
 ﻿using URLShortner.Core;
-using Xunit;
-namespace URLShortner.Api.Core.Tests;
+
+namespace URLShortner.Api.Tests;
 
 public class Base62EncodingScenarios
 {
