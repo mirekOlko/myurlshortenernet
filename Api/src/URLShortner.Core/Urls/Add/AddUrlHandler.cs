@@ -2,17 +2,32 @@ using URLShortner.Api.Core.Tests;
 
 namespace URLShortner.Core.Urls.Add;
 
+public interface IUrlDataStore
+{
+    Task AddAsync(ShortenedUrl shortened, CancellationToken cancellationToken);
+}
+
 public class AddUrlHandler
 {
     private readonly ShortUrlGenerator _shortUrlGenerator;
+    private readonly IUrlDataStore _urlDataStore;
 
-    public AddUrlHandler(ShortUrlGenerator shortUrlGenerator)
+    public AddUrlHandler(ShortUrlGenerator shortUrlGenerator, IUrlDataStore urlDataStore)
     {
-        _shortUrlGenerator = shortUrlGenerator;
+        _shortUrlGenerator = shortUrlGenerator ?? throw new ArgumentNullException(nameof(shortUrlGenerator));;
+        _urlDataStore = urlDataStore ?? throw new ArgumentNullException(nameof(urlDataStore));
     }
 
-    public Task<AddUrlResponse> HandleAsync(AddUrlRequest request, CancellationToken cancellationToken)
+    public async Task<AddUrlResponse> HandleAsync(AddUrlRequest request, CancellationToken cancellationToken)
     {
-        return Task.FromResult(new AddUrlResponse(request.LongUrl, _shortUrlGenerator.GenerateUniqueUrl()));
+        
+        var shortenedUrl = new ShortenedUrl()
+        {
+            LongUrl = request.LongUrl,
+            ShortUrl = _shortUrlGenerator.GenerateUniqueUrl()
+        };
+        
+        await _urlDataStore.AddAsync(shortenedUrl, cancellationToken); 
+        return new AddUrlResponse(shortenedUrl.LongUrl, shortenedUrl.ShortUrl);
     }
 }

@@ -14,6 +14,7 @@ public class Base62EncodingScenarios
     [InlineData(987654321, "14q60P")]
     public void Should_encode_number_to_base62(long number, string expected)
     {
+        // Assert
         number.EncodeToBase62().Should().Be(expected);
     }
 }
