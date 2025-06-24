@@ -10,6 +10,8 @@ on:
     paths:
       - infrastructure/**
   pull_request:
+    branches:
+      - main
     paths:
       - infrastructure/**
   workflow_dispatch:
@@ -46,6 +48,7 @@ jobs:
 
   deploy-stg:
     runs-on: ubuntu-latest
+    needs: deploy-dev
     environment: Staging
     steps:
       - uses: actions/checkout@v4
@@ -71,6 +74,8 @@ jobs:
 
   deploy-prod:
     runs-on: ubuntu-latest
+    needs: deploy-stg
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     environment: Production
     steps:
       - uses: actions/checkout@v4
