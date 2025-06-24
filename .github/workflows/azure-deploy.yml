@@ -37,7 +37,7 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            az group create --name ${{ vars.RESOURCE_GROUP_NAME }}" --location ${{ vars.RESOURCE_GROUP_LOCATION }}
+            az group create --name "${{ vars.RESOURCE_GROUP_NAME }}" --location "${{ vars.RESOURCE_GROUP_LOCATION }}"
             echo "Azure resource group created"
           
       - name: Deploy Bicep
@@ -45,57 +45,58 @@ jobs:
         with:
           resourceGroupName: ${{vars.RESOURCE_GROUP_NAME}}
           template: ./infrastructure/main.bicep
+          deploymentName: deploy-main
 
-  deploy-stg:
-    runs-on: ubuntu-latest
-    environment: Staging
-    steps:
-      - uses: actions/checkout@v4
+  # deploy-stg:
+  #   runs-on: ubuntu-latest
+  #   environment: Staging
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      - name: Azure Login
-        uses: Azure/login@v2.3.0
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  #     - name: Azure Login
+  #       uses: Azure/login@v2.3.0
+  #       with:
+  #         client-id: ${{ secrets.AZURE_CLIENT_ID }}
+  #         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+  #         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           
-      - name: Azure CLI script
-        uses: azure/cli@v2
-        with:
-          azcliversion: latest
-          inlineScript: |
-            az group create --name ${{ vars.RESOURCE_GROUP_NAME }}" --location ${{ vars.RESOURCE_GROUP_LOCATION }}
-            echo "Azure resource group created"
+  #     - name: Azure CLI script
+  #       uses: azure/cli@v2
+  #       with:
+  #         azcliversion: latest
+  #         inlineScript: |
+  #           az group create --name ${{ vars.RESOURCE_GROUP_NAME }} --location ${{ vars.RESOURCE_GROUP_LOCATION }}
+  #           echo "Azure resource group created"
           
-      - name: Deploy Bicep
-        uses: Azure/arm-deploy@v2
-        with:
-          resourceGroupName: ${{vars.RESOURCE_GROUP_NAME}}
-          template: ./infrastructure/main.bicep
+  #     - name: Deploy Bicep
+  #       uses: Azure/arm-deploy@v2
+  #       with:
+  #         resourceGroupName: ${{vars.RESOURCE_GROUP_NAME}}
+  #         template: ./infrastructure/main.bicep
           
-  deploy-prd:
-    runs-on: ubuntu-latest
-    environment: Production
-    steps:
-      - uses: actions/checkout@v4
+  # deploy-prd:
+  #   runs-on: ubuntu-latest
+  #   environment: Production
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      - name: Azure Login
-        uses: Azure/login@v2.3.0
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  #     - name: Azure Login
+  #       uses: Azure/login@v2.3.0
+  #       with:
+  #         client-id: ${{ secrets.AZURE_CLIENT_ID }}
+  #         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+  #         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           
-      - name: Azure CLI script
-        uses: azure/cli@v2
-        with:
-          azcliversion: latest
-          inlineScript: |
-            az group create --name ${{ vars.RESOURCE_GROUP_NAME }}" --location ${{ vars.RESOURCE_GROUP_LOCATION }}
-            echo "Azure resource group created"
+  #     - name: Azure CLI script
+  #       uses: azure/cli@v2
+  #       with:
+  #         azcliversion: latest
+  #         inlineScript: |
+  #           az group create --name ${{ vars.RESOURCE_GROUP_NAME }} --location ${{ vars.RESOURCE_GROUP_LOCATION }}
+  #           echo "Azure resource group created"
           
-      - name: Deploy Bicep
-        uses: Azure/arm-deploy@v2
-        with:
-          resourceGroupName: ${{vars.RESOURCE_GROUP_NAME}}
-          template: ./infrastructure/main.bicep
+  #     - name: Deploy Bicep
+  #       uses: Azure/arm-deploy@v2
+  #       with:
+  #         resourceGroupName: ${{vars.RESOURCE_GROUP_NAME}}
+  #         template: ./infrastructure/main.bicep
