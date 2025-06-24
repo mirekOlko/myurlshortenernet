@@ -40,3 +40,14 @@ az ad sp create-for-rbac --name "GitHub-Action-SP" \
     --scopes /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
     --sdk-auth
 ```
+
+### Read publishing-profiles
+we use:
+```bash
+az webapp deployment list-publishing-profiles \
+--name api-foobar \
+--resource-group my_resource_group \
+--xml
+```
+and copy all string into git secrets
+
