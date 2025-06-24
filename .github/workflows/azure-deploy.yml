@@ -35,9 +35,7 @@ jobs:
       - name: Azure CLI script
         run: |
           az account show
-          echo "RESOURCE_GROUP_LOCATION=${{ vars.RESOURCE_GROUP_LOCATION }}"
-          echo "RESOURCE_GROUP_NAME=${{ vars.RESOURCE_GROUP_NAME }}"
-          echo "az group create -l '${{ vars.RESOURCE_GROUP_LOCATION }}' -n '${{ vars.RESOURCE_GROUP_NAME }}'"
+          az group create -l '${{ vars.RESOURCE_GROUP_LOCATION }}' -n '${{ vars.RESOURCE_GROUP_NAME }}'
           echo "Azure resource group created"
           
 #       - name: Azure CLI script
