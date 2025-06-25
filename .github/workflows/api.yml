@@ -25,7 +25,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --ver bosity normal
+      run: dotnet test --no-build --verbosity normal
     - name: dotnet publish
 #      run: dotnet publish URLShortner.Api -c Release -o ${{env.DOTNET_ROOT}}/Api/src/URLShortner.Api
       run: dotnet publish .Api/src/URLShortner.Api/URLShortner.Api.csproj -c Release -o ./publish/URLShortner.Api
