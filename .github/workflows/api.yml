@@ -28,7 +28,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: dotnet publish
 #      run: dotnet publish URLShortner.Api -c Release -o ${{env.DOTNET_ROOT}}/Api/src/URLShortner.Api
-      run: dotnet publish .Api/src/URLShortner.Api/URLShortner.Api.csproj -c Release -o ./publish/URLShortner.Api
+      run: dotnet publish ./Api/src/URLShortner.Api/URLShortner.Api.csproj -c Release -o ./publish/URLShortner.Api
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4
       with:
