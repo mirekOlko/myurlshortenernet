@@ -1,22 +1,15 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-name: Azure Deploy
+name: Azure Dev Deploy
 
 on:
-  push:
-    branches:
-      - Dev
-    paths:
-      - infrastructure/**
-  workflow_dispatch:
+  workflow_dispatch:  # ręczne uruchamianie
+  workflow_call:      # pozwala innym workflowom wywołać ten
 
 permissions:
   id-token: write
   contents: read
 
 jobs:
-  deploy-dev-only:
+  deploy-dev:
     runs-on: ubuntu-latest
     environment: Development
     steps:
@@ -39,4 +32,4 @@ jobs:
         with:
           resourceGroupName: ${{vars.RESOURCE_GROUP_NAME}}
           template: ./infrastructure/main.bicep
-          deploymentName: deploy-dev
+          deploymentName: deploy-main
