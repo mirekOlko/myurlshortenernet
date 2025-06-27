@@ -1,7 +1,6 @@
 param location string = resourceGroup().location
 var uniqueId = uniqueString(resourceGroup().id)
 var keyVaultName string = 'kv-${uniqueId}'
-param cos string = 'mynameisadam'
 
 @description('Sekret, który ma zostać zapisany')
 @secure()
@@ -11,7 +10,7 @@ param secretValue string
 param principalObjectId string
 
 @description('Nazwa sekreta')
-param secretName string = 'my-secret-test'
+param secretName string = 'my-secret'
 
 resource keyVault 'Microsoft.KeyVault/vaults@2023-02-01' = {
   name: keyVaultName
