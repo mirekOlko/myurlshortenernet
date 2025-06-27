@@ -11,6 +11,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2024-11-01' = {
     }
     enableRbacAuthorization: true
     tenantId: subscription().tenantId
+    accessPolicies: []
   }
 }
 
