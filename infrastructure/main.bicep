@@ -32,6 +32,9 @@ module cosmosDb 'modules/storage/cosmos-db.bicep' = {
     laocationName: 'Spain Central'
     keyVaultName: keyVault.outputs.name
   }
+  dependsOn: [
+    keyVault
+  ]
 }
 
 module keyVaultRoleAssignment 'modules/secrets/key-vault-role-assignment.bicep' = {
