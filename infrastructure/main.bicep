@@ -25,11 +25,11 @@ module apiService 'modules/compute/appservice.bicep' = {
 module cosmosDb 'modules/storage/cosmos-db.bicep' = {
   name: 'cosmosDbDeployment'
   params: {
-    name: 'cosmos-db-${uniqueId}'
+    name: 'cosmos-db-free'
     location: location
     kind: 'GlobalDocumentDB'
     databaseName: 'urls'
-    laocationName: 'Spain Central'
+    locationName: 'Spain Central'
     keyVaultName: keyVault.outputs.name
   }
   dependsOn: [

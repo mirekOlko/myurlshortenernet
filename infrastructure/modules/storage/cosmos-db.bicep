@@ -2,7 +2,7 @@ param name string
 param location string
 param kind string
 param databaseName string
-param laocationName string
+param locationName string
 param keyVaultName string
 
 param containers array = [
@@ -20,7 +20,7 @@ resource cosmosDbAccount 'Microsoft.DocumentDB/databaseAccounts@2025-04-15' = {
     databaseAccountOfferType: 'Standard'
     enableFreeTier: true
     locations: [
-      { locationName: laocationName, failoverPriority: 0, isZoneRedundant: false }
+      { locationName: locationName, failoverPriority: 0, isZoneRedundant: false }
     ]
   }
 }
@@ -50,6 +50,9 @@ resource cosmosDbContainers 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/
           excludedPaths: [{ path: '/"_etag"/?' }]
         }
         defaultTtl: -1
+      }
+      options: {
+        throughput: 800 // Limit
       }
     }
   }
