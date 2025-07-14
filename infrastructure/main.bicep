@@ -25,7 +25,7 @@ module apiService 'modules/compute/appservice.bicep' = {
 module cosmosDb 'modules/storage/cosmos-db.bicep' = {
   name: 'cosmosDbDeployment'
   params: {
-    name: 'cosmos-db-free'
+    name: 'cosmos-db-free-me'
     location: location
     kind: 'GlobalDocumentDB'
     databaseName: 'urls'
